@@ -1,7 +1,7 @@
 package base;
 
 public class Calc {
-    final static int MMIEP = 8; //MAXIMAL_MOVES_IN_EVERY_POSITION
+    private final static int MMIEP = 8; //MAXIMAL_MOVES_IN_EVERY_POSITION
 
     //All possible moves in every position
     //Example: if your current position is 2:2
@@ -13,7 +13,7 @@ public class Calc {
         return (x >= 0 && x < rows) && (y >= 0 && y < column);
     }
 
-     int getNumberOfMoves(int rows, int columns,
+    int getNumberOfMoves(int rows, int columns,
                          int startX, int startY,
                          int endX, int endY) {
         int score = minMovesCounter(rows, columns,
@@ -44,7 +44,7 @@ public class Calc {
             int tryX = startX + cX[i];
             int tryY = startY + cY[i];
             if (isCorrectPosition(rows, columns, tryX, tryY)) {
-                int score = minMovesCounter(rows, columns, tryX, tryY, endX, endY, depth -1, counter+1);
+                int score = minMovesCounter(rows, columns, tryX, tryY, endX, endY, depth - 1, counter + 1);
                 bestScore = Math.min(bestScore, score);
             }
         }
