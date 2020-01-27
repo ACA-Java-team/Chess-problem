@@ -3,6 +3,7 @@ Minimum steps to reach target with a knight in chess.
 
 Program calculating minimum moves you need to do for reach your target with chess knight figure.
 
+
 Main function is: Calc.getNumberOfMoves(int rows, int columns, int startX, int startY, int endX, int endY);
 
 ---rows - number of rows in your chess board
@@ -12,6 +13,7 @@ Main function is: Calc.getNumberOfMoves(int rows, int columns, int startX, int s
 ---startX and startY - start position coordinates in the board
   
 ---endX and endY - target coordinates you need to reach.
+
   
 If your move is possible, return: minimum moves you need to reach.
 
