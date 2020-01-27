@@ -2,6 +2,7 @@ package base;
 
 public class Calc {
     private final static int MMIEP = 8; //MAXIMAL_MOVES_IN_EVERY_POSITION
+    private final static int START_DEPTH = 10;
 
     //All possible moves in every position
     //Example: if your current position is 2:2
@@ -16,10 +17,11 @@ public class Calc {
     int getNumberOfMoves(int rows, int columns,
                          int startX, int startY,
                          int endX, int endY) {
-        int score = minMovesCounter(rows, columns,
+        int score = minMovesCounter(
+                rows, columns,
                 startX, startY,
                 endX, endY,
-                10, 0);
+                START_DEPTH);
         if (score < 999) {
             return score;
         } else {
@@ -30,11 +32,11 @@ public class Calc {
     private int minMovesCounter(int rows, int columns,
                                 int startX, int startY,
                                 int endX, int endY,
-                                int depth, int counter) {
+                                int currentDepth) {
         if (startX == endX && startY == endY) {
-            return counter;
+            return START_DEPTH - currentDepth;
         }
-        if (depth == 0) {
+        if (currentDepth == 0) {
             return 999; // just big integer for Math.min func
         }
 
@@ -44,7 +46,13 @@ public class Calc {
             int tryX = startX + cX[i];
             int tryY = startY + cY[i];
             if (isCorrectPosition(rows, columns, tryX, tryY)) {
-                int score = minMovesCounter(rows, columns, tryX, tryY, endX, endY, depth - 1, counter + 1);
+                int score = minMovesCounter(
+                        rows, columns,
+                        tryX, tryY,
+                        endX, endY,
+                        currentDepth - 1
+                );
+
                 bestScore = Math.min(bestScore, score);
             }
         }
