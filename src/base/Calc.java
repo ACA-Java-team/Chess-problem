@@ -16,7 +16,7 @@ public class Calc {
      int getNumberOfMoves(int rows, int columns,
                          int startX, int startY,
                          int endX, int endY) {
-        int score = recursive(rows, columns,
+        int score = minMovesCounter(rows, columns,
                 startX, startY,
                 endX, endY,
                 10, 0);
@@ -27,10 +27,10 @@ public class Calc {
         }
     }
 
-    private int recursive(int rows, int columns,
-                          int startX, int startY,
-                          int endX, int endY,
-                          int depth, int counter) {
+    private int minMovesCounter(int rows, int columns,
+                                int startX, int startY,
+                                int endX, int endY,
+                                int depth, int counter) {
         if (startX == endX && startY == endY) {
             return counter;
         }
@@ -44,7 +44,7 @@ public class Calc {
             int tryX = startX + cX[i];
             int tryY = startY + cY[i];
             if (isCorrectPosition(rows, columns, tryX, tryY)) {
-                int score = recursive(rows, columns, tryX, tryY, endX, endY, depth -1, counter+1);
+                int score = minMovesCounter(rows, columns, tryX, tryY, endX, endY, depth -1, counter+1);
                 bestScore = Math.min(bestScore, score);
             }
         }
